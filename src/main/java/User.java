@@ -182,7 +182,52 @@ public class User {
         back.setText("Back");
         submit.setText("Submit");
         back.setOnAction(e->Main.window.setScene(User.roleSelect()));
+        back.setOnAction(e->Main.window.setScene(User.roleSelect()));
+        submit.setOnAction(e->{
 
+            while(true) {
+                if(validatePacientRegistration(username.getText(), password.getText(), fullName.getText(), phoneNumber.getText(), id.getText(), address.getText())) {
+                    JSONObject docUsersObj = new JSONObject();
+                    JSONObject docObj = new JSONObject();
+
+                    docObj.put("user", username.getText());
+                    docObj.put("password", Encryption.encrypt_password(password.getText()));
+                    docObj.put("name", fullName.getText());
+                    docObj.put("address", address.getText());
+                    docObj.put("phoneNumber", phoneNumber.getText());
+                    docObj.put("id", id.getText());
+
+                    JSONParser jsonParser = new JSONParser();
+                    try {
+                        JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("pacientdb.json"));
+                        JSONArray jsonArray = (JSONArray) jsonObject.get("users");
+                        docUsersArray = jsonArray;
+                    } catch (FileNotFoundException err) {
+                        err.printStackTrace();
+                    } catch (IOException err) {
+                        err.printStackTrace();
+                    } catch (ParseException err) {
+                        err.printStackTrace();
+                    } catch (Exception err) {
+                        err.printStackTrace();
+                    }
+
+
+                    docUsersArray.add(docObj);
+                    docUsersObj.put("users", docUsersArray);
+
+                    try (FileWriter file = new FileWriter("pacientdb.json")) {
+                        file.write(docUsersObj.toJSONString());
+                        file.flush();
+                    } catch (IOException error) {
+                        error.printStackTrace();
+                    }
+                    AlertBox.display("Succesfully registered!");
+                    Main.window.setScene(Main.appOpeningScene);
+                }
+                break;
+            }
+        });
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(20,20,20,20));
@@ -248,7 +293,7 @@ public class User {
                     return false;
                 }
             }
-            if(contorNumere<10)
+            if(contorNumere!=10)
             {
                 AlertBox.display("Your number must have 10 digits!");
                 return false;
@@ -306,7 +351,127 @@ public class User {
 
         return true;
     }
+    public static boolean validatePacientRegistration(String username, String pass, String nume, String telefon, String id, String address)
+    {
+        boolean ok=false;
+        //validare nume
+        if (nume.equals(null) || nume.equals(""))
+        {
+            AlertBox.display("You must enter your name!");
+            return false;
+        }
+        else
+        {
+            for(char c:nume.toCharArray())
+            {
+                if(Character.isDigit(c))
+                {
+                    AlertBox.display("You can't have numbers in your name!");
+                    return false;
+                }
 
+            }
+        }
+        //validare numar telefon
+        if(telefon.equals(null) || telefon.equals(""))
+        {
+            AlertBox.display("You must enter your number!");
+            return false;
+        }
+        else
+        {
+            int contorNumere = 0;
+            for(char c:telefon.toCharArray())
+            {
+                contorNumere++;
+                if(Character.isDigit(c)==false)
+                {
+                    AlertBox.display("Your number can't have letters!");
+                    return false;
+                }
+            }
+            if(contorNumere!=10)
+            {
+                AlertBox.display("Your number must have 10 digits!");
+                return false;
+            }
+        }
+        //validare id
+        if(id.equals(null) || id.equals(""))
+        {
+            AlertBox.display("You must enter the id!");
+            return false;
+        }
+        else
+        {
+            for(char c:id.toCharArray())
+            {
+                if(!Character.isDigit(c))
+                {
+                    AlertBox.display("ID can't have letters in it!");
+                    return false;
+                }
+            }
+            JSONParser jsonParser = new JSONParser();
+            try
+            {
+                JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("doctordb.json"));
+                JSONArray jsonArray = (JSONArray) jsonObject.get("users");
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                while(iterator.hasNext())
+                {
+                    if(!iterator.next().get("randomCode").equals(id))
+                    {
+                        ok=true;
+                    }
+                }
+
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            if(ok==false)
+            {
+                AlertBox.display("Your ID doesn't match with any doctor's ID!");
+                return false;
+            }
+        }
+        //validare adresa
+        if(address.equals(null) || address.equals(""))
+        {
+            AlertBox.display("You must enter your address!");
+            return false;
+        }
+        //validare username
+        JSONParser jsonParser = new JSONParser();
+        try
+        {
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("doctordb.json"));
+            JSONArray jsonArray = (JSONArray) jsonObject.get("users");
+            Iterator<JSONObject> iterator = jsonArray.iterator();
+            while(iterator.hasNext())
+            {
+                if(iterator.next().get("user").equals(username))
+                {
+                    AlertBox.display("Username already exists!");
+                    return false;
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        //validare pass
+        if(pass.equals(null) || pass.equals(""))
+        {
+            AlertBox.display("You must enter a password!");
+            return false;
+        }
+
+        return true;
+    }
     public static int docUniqueCode(int n)
     {
         int m = (int) Math.pow(10, n - 1);
