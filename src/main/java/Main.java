@@ -49,7 +49,8 @@ public class Main extends Application {
         appOpeningScene = new Scene(grid, 400, 600);
         window.setScene(appOpeningScene);
 
-        registerButton.setOnAction(e->window.setScene(User.roleSelect()));
+        registerButton.setOnAction(e->window.setScene(User.registerRoleSelect()));
+        loginButton.setOnAction(e->window.setScene(User.login()));
         window.show();
     }
 }

@@ -22,12 +22,15 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import sun.security.krb5.internal.crypto.Aes128;
+
+import javax.xml.soap.Text;
 
 public class User {
 
     public static JSONArray docUsersArray = new JSONArray();
 
-    public static Scene roleSelect()
+    public static Scene registerRoleSelect()
     {
         Label select = new Label("Select role: ");
         Button doctorButton = new Button();
@@ -50,9 +53,10 @@ public class User {
         GridPane.setConstraints(backButton, 1,3);
         grid.getChildren().addAll(select, doctorButton, pacientButton,backButton);
 
-        Scene roleSelectScene = new Scene(grid, 400, 600);
-        return roleSelectScene;
+        Scene registerRoleSelectScene = new Scene(grid, 400, 600);
+        return registerRoleSelectScene;
     }
+
     public static Scene registerDoctor()
     {
         Label docRegFormLabel = new Label("Registration Form");
@@ -80,7 +84,7 @@ public class User {
         Button submit = new Button();
         back.setText("Back");
         submit.setText("Submit");
-        back.setOnAction(e->Main.window.setScene(User.roleSelect()));
+        back.setOnAction(e->Main.window.setScene(User.registerRoleSelect()));
         submit.setOnAction(e->{
 
             while(true) {
@@ -122,6 +126,7 @@ public class User {
                         error.printStackTrace();
                     }
                     AlertBox.display("Succesfully registered!");
+                    docUsersArray.clear();
                     Main.window.setScene(Main.appOpeningScene);
                 }
                 break;
@@ -181,8 +186,8 @@ public class User {
         Button submit = new Button();
         back.setText("Back");
         submit.setText("Submit");
-        back.setOnAction(e->Main.window.setScene(User.roleSelect()));
-        back.setOnAction(e->Main.window.setScene(User.roleSelect()));
+        back.setOnAction(e->Main.window.setScene(User.registerRoleSelect()));
+        back.setOnAction(e->Main.window.setScene(User.registerRoleSelect()));
         submit.setOnAction(e->{
 
             while(true) {
@@ -223,6 +228,7 @@ public class User {
                         error.printStackTrace();
                     }
                     AlertBox.display("Succesfully registered!");
+                    docUsersArray.clear();
                     Main.window.setScene(Main.appOpeningScene);
                 }
                 break;
@@ -254,6 +260,100 @@ public class User {
 
         Scene registerPacientScene = new Scene(grid, 400, 600);
         return registerPacientScene;
+    }
+    public static Scene login()
+    {
+        Label usernameLabel = new Label("Username");
+        Label passwordLabel = new Label("Password");
+        Label loginTitle = new Label("Login");
+        TextField username = new TextField();
+        TextField password = new TextField();
+        Button submit = new Button();
+        Button back = new Button();
+        submit.setText("Log in");
+        back.setText("Back");
+        back.setOnAction(e->Main.window.setScene(Main.appOpeningScene));
+        submit.setOnAction(e->{
+            boolean isDoctor = false;
+            boolean isPacient = false;
+            JSONParser jsonParser = new JSONParser();
+            try
+            {
+                int contor=0;
+                JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("doctordb.json"));
+                JSONArray jsonArray = (JSONArray) jsonObject.get("users");
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                while(iterator.hasNext())
+                {
+                    iterator.next();
+                    contor++;
+                }
+                for(Object o:jsonArray)
+                {
+                    if(((JSONObject)o).get("user").equals(username.getText()) && (Encryption.decrypt_password((String)(((JSONObject)o).get("password")))).equals(password.getText()))
+                    {
+                        isDoctor = true;
+                        break;
+                    }
+                }
+
+            }
+            catch(Exception e1)
+            {
+                e1.printStackTrace();
+            }
+            try
+            {
+                int contor=0;
+                JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("pacientdb.json"));
+                JSONArray jsonArray = (JSONArray) jsonObject.get("users");
+                Iterator<JSONObject> iterator = jsonArray.iterator();
+                while(iterator.hasNext())
+                {
+                    iterator.next();
+                    contor++;
+                }
+                for(Object o:jsonArray)
+                {
+                    if(((JSONObject)o).get("user").equals(username.getText()) && (Encryption.decrypt_password((String)(((JSONObject)o).get("password")))).equals(password.getText()))
+                    {
+                        isPacient = true;
+                        break;
+                    }
+                }
+            }
+            catch(Exception e2)
+            {
+               e2.printStackTrace();
+            }
+            if(isDoctor==true && isPacient==false)
+            {
+                AlertBox.display("You logged in as a doctor");
+            }
+            else if(isDoctor==false && isPacient==true)
+            {
+                AlertBox.display("You logged in as a pacient");
+            }
+            else
+            {
+                AlertBox.display("Username or password is wrong");
+            }
+        });
+
+        GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(20,20,20,20));
+        gridPane.setVgap(10);
+        GridPane.setConstraints(loginTitle, 1, 0);
+        GridPane.setConstraints(usernameLabel, 0, 1);
+        GridPane.setConstraints(passwordLabel, 0,2);
+        GridPane.setConstraints(username, 1,1);
+        GridPane.setConstraints(password, 1,2);
+        GridPane.setConstraints(submit, 1,3);
+        GridPane.setConstraints(back, 1,4);
+        gridPane.getChildren().addAll(loginTitle, usernameLabel, passwordLabel, username, password, submit, back);
+
+        Scene loginScene = new Scene(gridPane, 400, 600);
+        return loginScene;
     }
     public static boolean validateDocRegistration(String username, String pass, String nume, String telefon, String hospital, String address)
     {
