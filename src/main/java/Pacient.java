@@ -90,7 +90,6 @@ public class Pacient {
     public static void checkTreatment()
     {
         JSONParser jsonParser = new JSONParser();
-
         try{
             JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("pacientdb.json"));
             JSONArray jsonArray = (JSONArray) jsonObject.get("users");
