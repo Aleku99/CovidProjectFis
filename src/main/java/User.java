@@ -282,12 +282,7 @@ public class User {
                 int contor=0;
                 JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("doctordb.json"));
                 JSONArray jsonArray = (JSONArray) jsonObject.get("users");
-                Iterator<JSONObject> iterator = jsonArray.iterator();
-                while(iterator.hasNext())
-                {
-                    iterator.next();
-                    contor++;
-                }
+
                 for(Object o:jsonArray)
                 {
                     if(((JSONObject)o).get("user").equals(username.getText()) && (Encryption.decrypt_password((String)(((JSONObject)o).get("password")))).equals(password.getText()))
@@ -307,12 +302,7 @@ public class User {
                 int contor=0;
                 JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("pacientdb.json"));
                 JSONArray jsonArray = (JSONArray) jsonObject.get("users");
-                Iterator<JSONObject> iterator = jsonArray.iterator();
-                while(iterator.hasNext())
-                {
-                    iterator.next();
-                    contor++;
-                }
+
                 for(Object o:jsonArray)
                 {
                     if(((JSONObject)o).get("user").equals(username.getText()) && (Encryption.decrypt_password((String)(((JSONObject)o).get("password")))).equals(password.getText()))
