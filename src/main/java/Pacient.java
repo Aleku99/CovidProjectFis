@@ -2,6 +2,7 @@ import com.sun.java.swing.plaf.windows.resources.windows;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -43,7 +44,7 @@ public class Pacient {
 
         logoutButton.setOnAction(e->{Main.window.setScene(User.login());});
         writeSymptomsButton.setOnAction(e->{Main.window.setScene(writeSymptomsScene());});
-        checkTreatmentButton.setOnAction(e->{});
+        checkTreatmentButton.setOnAction(e->{checkTreatment();});
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(20,20,20,20));
@@ -86,7 +87,34 @@ public class Pacient {
         Scene writeSymptomsScene = new Scene(grid, 400, 600);
         return writeSymptomsScene;
     }
+    public static void checkTreatment()
+    {
+        JSONParser jsonParser = new JSONParser();
 
+        try{
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("pacientdb.json"));
+            JSONArray jsonArray = (JSONArray) jsonObject.get("users");
+
+            for(Object o: jsonArray)
+            {
+                if(((JSONObject)o).get("name").equals(pacientName))
+                {
+                    if(((JSONObject)o).get("treatment").equals(""))
+                    {
+                        AlertBox.display("Inca nu exista tratament pentru dumneavoastra");
+                    }
+                    else
+                    {
+                        AlertBox.display(((JSONObject)o).get("treatment").toString());
+                    }
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
     public static void updateDb(String key, String value)
     {
          JSONObject pacientUsersObj = new JSONObject();
