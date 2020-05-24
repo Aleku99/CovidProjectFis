@@ -132,8 +132,6 @@ public class Pacient {
                 if(((JSONObject)o).get("name").equals(pacientName))
                 {
                     ((JSONObject)o).put("symptoms", value);
-                    System.out.println(value);
-                    System.out.println(((JSONObject)o).get("user"));
                     pacientUsersArray.add(o);
 
                 }
