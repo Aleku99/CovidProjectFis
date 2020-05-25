@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import jdk.nashorn.internal.runtime.JSONFunctions;
+import org.apache.commons.io.FileUtils;
+import java.io.File;
 
 
 public class Main extends Application {
@@ -26,7 +28,18 @@ public class Main extends Application {
     }
     public void start(Stage primaryStage) throws Exception
     {
+        try {
+            File original = new File("../doctordb.json");
+            File copied = new File("doctordb.json");
+            FileUtils.copyFile(original, copied);
 
+            original = new File("../pacientdb.json");
+            copied = new File("pacientdb.json");
+            FileUtils.copyFile(original, copied);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
         window = primaryStage;
         window.setTitle("Covid-19 Pacients' Management");
 
