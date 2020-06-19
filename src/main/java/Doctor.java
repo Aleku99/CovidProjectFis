@@ -82,32 +82,32 @@ public class Doctor {
         searchPacientButton.setText("Seach pacient");
         backButton.setOnAction(e->{Main.window.setScene(doctorStartScene(doctorName,doctorId));});
         searchPacientButton.setOnAction(e->{
-            JSONParser jsonParser = new JSONParser();
-            try{
-                JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("pacientdb.json"));
-                JSONArray jsonArray = (JSONArray) jsonObject.get("users");
+            if(nameValidation(nameField.getText())==true) {
+                JSONParser jsonParser = new JSONParser();
+                try {
+                    JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("pacientdb.json"));
+                    JSONArray jsonArray = (JSONArray) jsonObject.get("users");
+                    int gasit=0;
+                    for (Object o : jsonArray) {
 
-                for(Object o: jsonArray)
-                {
-                    System.out.println(doctorId+doctorName);
-                    if(((JSONObject)o).get("name").equals((String)nameField.getText()) && ((JSONObject)o).get("id").equals(doctorId))
-                    {
+                        if (((JSONObject) o).get("name").equals((String) nameField.getText()) && ((JSONObject) o).get("id").equals(doctorId)) {
+                            gasit=1;
+                            if (((JSONObject) o).get("symptoms").equals("")) {
+                                AlertBox.display("The pacient doesn't have any symptoms!");
+                            } else {
+                                AlertBox.display(((JSONObject) o).get("symptoms").toString());
+                            }
+                        }
 
-                        if(((JSONObject)o).get("symptoms").equals(""))
-                        {
-                            AlertBox.display("Pacientul nu are simptome!");
-                        }
-                        else
-                        {
-                            AlertBox.display(((JSONObject)o).get("symptoms").toString());
-                        }
                     }
+                    if(gasit==0)
+                    {AlertBox.display("Pacient doesn't exist or it isn't your pacient.");
+                    }
+                } catch (Exception e1) {
+                    e1.printStackTrace();
                 }
             }
-            catch(Exception e1)
-            {
-                e1.printStackTrace();
-            }
+
         });
 
         GridPane grid = new GridPane();
@@ -124,4 +124,27 @@ public class Doctor {
         return seeSymptomsScene ;
 
     }
+    public static boolean nameValidation(String nume)
+    {
+
+        if (nume.equals(null) || nume.equals(""))
+        {
+            AlertBox.display("You must enter your name!");
+            return false;
+        }
+        else
+        {
+            for(char c:nume.toCharArray())
+            {
+                if(Character.isDigit(c))
+                {
+                    AlertBox.display("You can't have numbers in your name!");
+                    return false;
+                }
+
+            }
+        }
+        return true;
+    }
+
 }
