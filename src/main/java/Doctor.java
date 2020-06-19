@@ -19,7 +19,10 @@ import java.awt.*;
 
 import java.io.*;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,7 +30,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import sun.security.krb5.internal.crypto.Aes128;
 
+import javax.mail.*;
+import javax.mail.internet.*;
 import javax.xml.soap.Text;
+import java.util.Properties;
+
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 
 public class Doctor {
     public static String doctorName="";
@@ -53,7 +61,14 @@ public class Doctor {
         logoutButton.setOnAction(e->{Main.window.setScene(User.login());});
         addPacientButton.setOnAction(e->{Main.window.setScene(addPacientScene());});
         setStatusButton.setOnAction(e->{Main.window.setScene(setStatusScene());});
-        //callAmbulanceButton.setOnAction(e->{callAmbulance();});
+        callAmbulanceButton.setOnAction(e->{
+            try {
+                callAmbulance("aleku99@yahoo.com");
+            }
+            catch(Exception e1){
+                e1.printStackTrace();
+            }
+        });
         seeSymptomsButton.setOnAction(e->{Main.window.setScene(seeSymptomsScene());});
 
 
@@ -317,5 +332,42 @@ public class Doctor {
             error.printStackTrace();
         }
     }
+    public static void callAmbulance(String recepient) throws Exception
+    {
+        System.out.println("Preparing to send email");
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth","true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port","587");
+
+        String myAccountEmail = "loghinalex19@gmail.com";
+        String password = "alexandru19111999";
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(myAccountEmail,password);
+            }
+        });
+        Message message = prepareMessage(session, myAccountEmail,recepient);
+        Transport.send(message);
+        System.out.println("Message sent succesfully");
+    }
+    private static Message prepareMessage(Session session, String myAccountEmail,String recepient)
+    {
+        try{
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(myAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
+            message.setSubject("My first mail from java");
+            message.setText("Hello");
+            return message;
+        }catch(Exception ex){
+            System.out.println(ex.toString());
+        }
+        return null;
+    }
+
 
 }
