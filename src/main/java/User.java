@@ -165,20 +165,17 @@ public class User {
         Label nameLabel = new Label("Name");
         Label addressLabel = new Label("Address");
         Label phoneNumberLabel = new Label("Phone Number");
-        Label idLabel = new Label("ID");
         Label usernameLabel = new Label("Username");
         Label passwordLabel = new Label("Password");
 
         TextField fullName = new TextField();
         TextField address = new TextField();
         TextField phoneNumber = new TextField();
-        TextField id = new TextField();
         TextField username = new TextField();
         TextField password = new TextField();
         fullName.setPromptText("First name and last name");
         address.setPromptText("Your address");
         phoneNumber.setPromptText("Your personal phone number");
-        id.setPromptText("Your ID");
         username.setPromptText("Desired username");
         password.setPromptText("desired password");
 
@@ -191,7 +188,7 @@ public class User {
         submit.setOnAction(e->{
 
             while(true) {
-                if(validatePacientRegistration(username.getText(), password.getText(), fullName.getText(), phoneNumber.getText(), id.getText(), address.getText())) {
+                if(validatePacientRegistration(username.getText(), password.getText(), fullName.getText(), phoneNumber.getText(),  address.getText())) {
                     JSONObject docUsersObj = new JSONObject();
                     JSONObject docObj = new JSONObject();
 
@@ -200,10 +197,10 @@ public class User {
                     docObj.put("name", fullName.getText());
                     docObj.put("address", address.getText());
                     docObj.put("phoneNumber", phoneNumber.getText());
-                    docObj.put("id", id.getText());
                     docObj.put("symptoms", "");
                     docObj.put("treatment", "");
                     docObj.put("status", "");
+                    docObj.put("id","");
 
                     JSONParser jsonParser = new JSONParser();
                     try {
@@ -246,19 +243,19 @@ public class User {
         GridPane.setConstraints(nameLabel, 0,1);
         GridPane.setConstraints(addressLabel,0,2);
         GridPane.setConstraints(phoneNumberLabel, 0,3);
-        GridPane.setConstraints(idLabel, 0,4);
+
         GridPane.setConstraints(usernameLabel, 0, 5);
         GridPane.setConstraints(passwordLabel, 0, 6);
         GridPane.setConstraints(fullName,1,1);
         GridPane.setConstraints(address,1,2);
         GridPane.setConstraints(phoneNumber, 1,3);
-        GridPane.setConstraints(id, 1,4);
+
         GridPane.setConstraints(username, 1,5);
         GridPane.setConstraints(password, 1,6);
         GridPane.setConstraints(submit, 1,7);
         GridPane.setConstraints(back, 1,8);
-        grid.getChildren().addAll(fullName,address,phoneNumber,idLabel,submit,back,
-                docRegFormLabel,nameLabel,addressLabel,phoneNumberLabel,id, username, usernameLabel,
+        grid.getChildren().addAll(fullName,address,phoneNumber,submit,back,
+                docRegFormLabel,nameLabel,addressLabel,phoneNumberLabel, username, usernameLabel,
                 passwordLabel, password);
 
         Scene registerPacientScene = new Scene(grid, 400, 600);
@@ -450,7 +447,7 @@ public class User {
 
         return true;
     }
-    public static boolean validatePacientRegistration(String username, String pass, String nume, String telefon, String id, String address)
+    public static boolean validatePacientRegistration(String username, String pass, String nume, String telefon, String address)
     {
         boolean ok=false;
         //validare nume
@@ -495,47 +492,7 @@ public class User {
                 return false;
             }
         }
-        //validare id
-        if(id.equals(null) || id.equals(""))
-        {
-            AlertBox.display("You must enter the id!");
-            return false;
-        }
-        else
-        {
-            for(char c:id.toCharArray())
-            {
-                if(!Character.isDigit(c))
-                {
-                    AlertBox.display("ID can't have letters in it!");
-                    return false;
-                }
-            }
-            JSONParser jsonParser = new JSONParser();
-            try
-            {
-                JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("doctordb.json"));
-                JSONArray jsonArray = (JSONArray) jsonObject.get("users");
-                Iterator<JSONObject> iterator = jsonArray.iterator();
-                while(iterator.hasNext())
-                {
-                    if(!iterator.next().get("randomCode").equals(id))
-                    {
-                        ok=true;
-                    }
-                }
 
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-            if(ok==false)
-            {
-                AlertBox.display("Your ID doesn't match with any doctor's ID!");
-                return false;
-            }
-        }
         //validare adresa
         if(address.equals(null) || address.equals(""))
         {

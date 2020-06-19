@@ -51,7 +51,7 @@ public class Doctor {
         seeSymptomsButton.setText("See symptoms");
 
         logoutButton.setOnAction(e->{Main.window.setScene(User.login());});
-        //addPacientButton.setOnAction(e->{Main.window.setScene(addPacientScene());});
+        addPacientButton.setOnAction(e->{Main.window.setScene(addPacientScene());});
         setStatusButton.setOnAction(e->{Main.window.setScene(setStatusScene());});
         //callAmbulanceButton.setOnAction(e->{callAmbulance();});
         seeSymptomsButton.setOnAction(e->{Main.window.setScene(seeSymptomsScene());});
@@ -106,6 +106,7 @@ public class Doctor {
                     {AlertBox.display("Pacient doesn't exist or it isn't your pacient.");
                     }
                 } catch (Exception e1) {
+                    System.out.println("Aici pica");
                     e1.printStackTrace();
                 }
             }
@@ -131,6 +132,8 @@ public class Doctor {
         Label pacientNameLabel = new Label("Pacient's name");
         TextField nameField = new TextField();
         Label statusLabel = new Label("Pacient's status");
+        Label treatmentLabel = new Label("Treatment");
+        TextField treatmentField = new TextField();
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "healthy",
@@ -156,7 +159,9 @@ public class Doctor {
                         if (((JSONObject) o).get("name").equals((String) nameField.getText()) && ((JSONObject) o).get("id").equals(doctorId)) {
                             gasit=1;
                            //code for setting status
-                            updateDbDoc("status",statusField.getValue().toString(),nameField.getText());
+                            updateDbDoc("status",statusField.getValue().toString(),nameField.getText(),"name");
+                            updateDbDoc("treatment",treatmentField.getText(),nameField.getText(),"name");
+                            AlertBox.display("Status set successfully!");
                         }
 
                     }
@@ -178,13 +183,64 @@ public class Doctor {
         GridPane.setConstraints(nameField,2,0);
         GridPane.setConstraints(statusLabel, 1,1);
         GridPane.setConstraints(statusField,2,1);
-        GridPane.setConstraints(setStatusButton,1,2);
-        GridPane.setConstraints(backButton,1,3);
-        grid.getChildren().addAll(pacientNameLabel,nameField,statusLabel,statusField, backButton,setStatusButton);
+        GridPane.setConstraints(treatmentLabel,1,2);
+        GridPane.setConstraints(treatmentField,2,2);
+        GridPane.setConstraints(setStatusButton,1,3);
+        GridPane.setConstraints(backButton,1,4);
+        grid.getChildren().addAll(pacientNameLabel,nameField,statusLabel,statusField, backButton,setStatusButton,treatmentField,treatmentLabel);
 
 
         Scene setStatusScene = new Scene(grid, 400, 600);
         return setStatusScene;
+    }
+    public static Scene addPacientScene()
+    {
+        Label pacientNameLabel = new Label("Pacient's username");
+        TextField nameField = new TextField();
+
+        Button backButton = new Button();
+        Button addPacientButton = new Button();
+        backButton.setText("Back");
+        addPacientButton.setText("Add pacient");
+
+        backButton.setOnAction(e->{Main.window.setScene(doctorStartScene(doctorName,doctorId));});
+        addPacientButton.setOnAction(e->{
+            if(userValidation(nameField.getText())==true) {
+                JSONParser jsonParser = new JSONParser();
+                try {
+                    JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("pacientdb.json"));
+                    JSONArray jsonArray = (JSONArray) jsonObject.get("users");
+                    int gasit=0;
+                    for (Object o : jsonArray) {
+
+                        if (((JSONObject) o).get("user").equals((String) nameField.getText())) {
+                            gasit=1;
+                            updateDbDoc("id",doctorId,nameField.getText(),"user");
+                            AlertBox.display("Pacient added succesfully!");
+                        }
+
+                    }
+                    if(gasit==0)
+                    {AlertBox.display("Pacient doesn't exist!");
+                    }
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+            Main.window.setScene(addPacientScene());
+        });
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(20,20,20,20));
+        grid.setVgap(10);
+        grid.setAlignment(Pos.TOP_CENTER);
+        GridPane.setConstraints(pacientNameLabel,1,0);
+        GridPane.setConstraints(nameField,2,0);
+        GridPane.setConstraints(backButton,1,3);
+        GridPane.setConstraints(addPacientButton,1,2);
+        grid.getChildren().addAll(pacientNameLabel,nameField,addPacientButton, backButton);
+
+        Scene addPacientScene = new Scene(grid, 400, 600);
+        return addPacientScene;
     }
     public static boolean nameValidation(String nume)
     {
@@ -208,7 +264,19 @@ public class Doctor {
         }
         return true;
     }
-    public static void updateDbDoc(String key, String value,String pacientName)
+
+    public static boolean userValidation(String nume)
+    {
+
+        if (nume.equals(null) || nume.equals(""))
+        {
+            AlertBox.display("You must enter pacient's username!");
+            return false;
+        }
+
+        return true;
+    }
+    public static void updateDbDoc(String key, String value,String pacientName,String compareKey)
     {
         JSONObject pacientUsersObj = new JSONObject();
         JSONArray pacientUsersArray = new JSONArray();
@@ -223,7 +291,7 @@ public class Doctor {
             for(Object o:jsonArray)
             {
 
-                if(((JSONObject)o).get("name").equals(pacientName))
+                if(((JSONObject)o).get(compareKey).equals(pacientName))
                 {
                     ((JSONObject)o).put(key, value);
                     pacientUsersArray.add(o);
