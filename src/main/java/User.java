@@ -280,6 +280,7 @@ public class User {
             boolean isDoctor = false;
             boolean isPacient = false;
             String name_doctor="";
+            String id_doctor="";
             String name_pacient="";
             JSONParser jsonParser = new JSONParser();
             try
@@ -294,6 +295,7 @@ public class User {
                     {
                         isDoctor = true;
                         name_doctor = ((String)((JSONObject)o).get("name"));
+                        id_doctor = (((JSONObject)o).get("randomCode").toString());
                         break;
                     }
                 }
@@ -325,7 +327,7 @@ public class User {
             }
             if(isDoctor==true && isPacient==false)
             {
-                Main.window.setScene(Doctor.doctorStartScene(name_doctor));
+                Main.window.setScene(Doctor.doctorStartScene(name_doctor, id_doctor));
             }
             else if(isDoctor==false && isPacient==true)
             {
