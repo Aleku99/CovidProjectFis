@@ -279,7 +279,8 @@ public class User {
         submit.setOnAction(e->{
             boolean isDoctor = false;
             boolean isPacient = false;
-            String name="";
+            String name_doctor="";
+            String name_pacient="";
             JSONParser jsonParser = new JSONParser();
             try
             {
@@ -292,6 +293,7 @@ public class User {
                     if(((JSONObject)o).get("user").equals(username.getText()) && (Encryption.decrypt_password((String)(((JSONObject)o).get("password")))).equals(password.getText()))
                     {
                         isDoctor = true;
+                        name_doctor = ((String)((JSONObject)o).get("name"));
                         break;
                     }
                 }
@@ -312,7 +314,7 @@ public class User {
                     if(((JSONObject)o).get("user").equals(username.getText()) && (Encryption.decrypt_password((String)(((JSONObject)o).get("password")))).equals(password.getText()))
                     {
                         isPacient = true;
-                        name = ((String)((JSONObject)o).get("name"));
+                        name_pacient = ((String)((JSONObject)o).get("name"));
                         break;
                     }
                 }
@@ -323,11 +325,11 @@ public class User {
             }
             if(isDoctor==true && isPacient==false)
             {
-                AlertBox.display("You logged in as a doctor");
+                Main.window.setScene(Doctor.doctorStartScene(name_doctor));
             }
             else if(isDoctor==false && isPacient==true)
             {
-                Main.window.setScene(Pacient.pacientStartScene(name));
+                Main.window.setScene(Pacient.pacientStartScene(name_pacient));
             }
             else
             {
