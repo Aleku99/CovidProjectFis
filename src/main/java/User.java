@@ -385,7 +385,7 @@ public class User {
                 contorNumere++;
                 if(Character.isDigit(c)==false)
                 {
-                    AlertBox.display("Your number can't have letters!");
+                   AlertBox.display("Your number can't have letters!");
                     return false;
                 }
             }
@@ -407,7 +407,7 @@ public class User {
             {
                 if(Character.isDigit(c))
                 {
-                    AlertBox.display("Hospital's name can't have digits!");
+                   AlertBox.display("Hospital's name can't have digits!");
                     return false;
                 }
             }
@@ -441,7 +441,7 @@ public class User {
         //validare pass
         if(pass.equals(null) || pass.equals(""))
         {
-            AlertBox.display("You must enter a password!");
+           AlertBox.display("You must enter a password!");
             return false;
         }
 
@@ -503,7 +503,7 @@ public class User {
         JSONParser jsonParser = new JSONParser();
         try
         {
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("doctordb.json"));
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("pacientdb.json"));
             JSONArray jsonArray = (JSONArray) jsonObject.get("users");
             Iterator<JSONObject> iterator = jsonArray.iterator();
             while(iterator.hasNext())
