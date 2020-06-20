@@ -19,7 +19,10 @@ import java.awt.*;
 
 import java.io.*;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,7 +30,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import sun.security.krb5.internal.crypto.Aes128;
 
+import javax.mail.*;
+import javax.mail.internet.*;
 import javax.xml.soap.Text;
+import java.util.Properties;
+
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 
 public class Doctor {
     public static String doctorName="";
@@ -53,7 +61,7 @@ public class Doctor {
         logoutButton.setOnAction(e->{Main.window.setScene(User.login());});
         addPacientButton.setOnAction(e->{Main.window.setScene(addPacientScene());});
         setStatusButton.setOnAction(e->{Main.window.setScene(setStatusScene());});
-        //callAmbulanceButton.setOnAction(e->{callAmbulance();});
+        callAmbulanceButton.setOnAction(e->{Main.window.setScene(callAmbulanceScene());});
         seeSymptomsButton.setOnAction(e->{Main.window.setScene(seeSymptomsScene());});
 
 
@@ -317,5 +325,94 @@ public class Doctor {
             error.printStackTrace();
         }
     }
+    public static Scene callAmbulanceScene()
+    {
+        Label nameLabel = new Label("Pacient's name");
+        TextField nameField = new TextField();
+        Button backButton = new Button();
+        Button sendAmbulanceButton = new Button();
+        backButton.setText("back");
+        sendAmbulanceButton.setText("Send ambulance");
+        backButton.setOnAction(e->{Main.window.setScene(doctorStartScene(doctorName,doctorId));});
+        sendAmbulanceButton.setOnAction(e->{
+            if(nameValidation(nameField.getText())) {
+                JSONParser jsonParser = new JSONParser();
+                try {
+                    JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("pacientdb.json"));
+                    JSONArray jsonArray = (JSONArray) jsonObject.get("users");
+                    int gasit=0;
+                    for (Object o : jsonArray) {
+
+                        if (((JSONObject) o).get("name").equals((String) nameField.getText()) && ((JSONObject) o).get("id").equals(doctorId)) {
+                            gasit=1;
+                            try{
+                                callAmbulance("loghinalex19@gmail.com",nameField.getText(),((JSONObject) o).get("address").toString());
+                                AlertBox.display("Ambulance called succesfully!");
+                                Main.window.setScene(callAmbulanceScene());
+                            }catch(Exception e2){
+                                e2.printStackTrace();
+                            }
+                        }
+                    }
+                    if(gasit==0)
+                    {AlertBox.display("Pacient doesn't exist or it isn't your pacient.");
+                    }
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(20,20,20,20));
+        grid.setVgap(10);
+        grid.setAlignment(Pos.TOP_CENTER);
+        GridPane.setConstraints(nameLabel,1,0);
+        GridPane.setConstraints(nameField,2,0);
+        GridPane.setConstraints(backButton,1,3);
+        GridPane.setConstraints(sendAmbulanceButton,1,2);
+        grid.getChildren().addAll(nameLabel,nameField,sendAmbulanceButton, backButton);
+
+        Scene callAmbulanceScene = new Scene(grid, 400, 600);
+        return callAmbulanceScene;
+    }
+    public static void callAmbulance(String recepient, String pacientName,String address) throws Exception
+    {
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth","true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port","587");
+
+        String myAccountEmail = "covidpacientmanagement@gmail.com";
+        String password = "Covid19!";
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(myAccountEmail,password);
+            }
+        });
+        Message message = prepareMessage(session, myAccountEmail,recepient, pacientName,address);
+        Transport.send(message);
+
+    }
+    private static Message prepareMessage(Session session, String myAccountEmail,String recepient,String pacientName,String address)
+    {
+        try{
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(myAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
+            message.setSubject("Covid-19 emergency");
+
+            message.setText("Pacient's name: " + pacientName + "\n" + "Address: " + address);
+            return message;
+        }catch(Exception ex){
+            System.out.println(ex.toString());
+        }
+        return null;
+    }
+
 
 }
