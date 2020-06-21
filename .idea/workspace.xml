@@ -2,14 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93019120-5d2c-4475-bd2b-a0f2b4a2fe46" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/DoctorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/EncryptionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/UserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Doctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pacientdb.json" beforeDir="false" afterPath="$PROJECT_DIR$/pacientdb.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Covid-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/Covid-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/CovidApp.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/CovidApp.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/doctordb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/pacientdb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/DoctorTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/DoctorTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/EncryptionTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/EncryptionTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-DoctorTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-DoctorTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-EncryptionTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-EncryptionTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-UserTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-UserTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/UserTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/UserTest.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +27,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Covid$EncryptionTest_testEncrypt.ic" NAME="EncryptionTest.testEncrypt Coverage Results" MODIFIED="1592667091259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Covid$DoctorTest_testNameValidation.ic" NAME="DoctorTest.testNameValidation Coverage Results" MODIFIED="1592671836122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Covid$DoctorTest_testNameValidation.ic" NAME="DoctorTest.testNameValidation Coverage Results" MODIFIED="1592727863556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Covid$DoctorTest_testUserValidation.ic" NAME="DoctorTest.testUserValidation Coverage Results" MODIFIED="1592672016304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Covid$UserTest_testValidatePacientRegistration.ic" NAME="UserTest.testValidatePacientRegistration Coverage Results" MODIFIED="1592671221144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Covid$UserTest_testValidateDocRegistration.ic" NAME="UserTest.testValidateDocRegistration Coverage Results" MODIFIED="1592669201056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -32,11 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+            <state relative-caret-position="376">
+              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -44,17 +51,80 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Doctor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="280" column="14" selection-start-line="280" selection-start-column="14" selection-end-line="280" selection-end-column="14" />
+            <state relative-caret-position="5882">
+              <caret line="400" column="54" selection-start-line="400" selection-start-column="54" selection-end-line="400" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="68" column="27" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doctordb.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="48" selection-start-column="48" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/DoctorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            <state relative-caret-position="221">
+              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/EncryptionTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/AlertBox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Pacient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="376">
+              <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pacientdb.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="336" selection-start-column="336" selection-end-column="336" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -75,6 +145,7 @@
       <find>updateDb</find>
       <find>register</find>
       <find>validatePac</find>
+      <find>CovidA</find>
     </findStrings>
     <replaceStrings>
       <replace>Alert</replace>
@@ -93,9 +164,9 @@
         <option value="$PROJECT_DIR$/src/test/java/EncryptionTest.java" />
         <option value="$PROJECT_DIR$/pacientdb.json" />
         <option value="$PROJECT_DIR$/src/test/java/UserTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/User.java" />
         <option value="$PROJECT_DIR$/src/test/java/DoctorTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Doctor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/User.java" />
       </list>
     </option>
   </component>
@@ -116,8 +187,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="866" />
-    <option name="y" value="130" />
+    <option name="x" value="645" />
+    <option name="y" value="105" />
     <option name="width" value="1300" />
     <option name="height" value="1410" />
   </component>
@@ -126,7 +197,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -169,11 +240,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1592672015116" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1592729895914" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/json-simple-1.1.1.jar!/" />
@@ -202,7 +273,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DoctorTest.testUserValidation">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="CovidProjectFis" />
@@ -250,9 +321,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DoctorTest.testUserValidation" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.DoctorTest.testNameValidation" />
+        <item itemvalue="JUnit.DoctorTest.testUserValidation" />
         <item itemvalue="JUnit.UserTest.testValidatePacientRegistration" />
         <item itemvalue="JUnit.UserTest" />
       </list>
@@ -272,18 +343,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="UserTest_testValidatePacientRegistration - 2020.06.20 at 19h 32m 54s.xml">
-      <configuration name="UserTest.testValidatePacientRegistration" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UserTest_testValidatePacientRegistration - 2020.06.20 at 19h 34m 09s.xml">
-      <configuration name="UserTest.testValidatePacientRegistration" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UserTest_testValidatePacientRegistration - 2020.06.20 at 19h 34m 34s.xml">
-      <configuration name="UserTest.testValidatePacientRegistration" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UserTest_testValidatePacientRegistration - 2020.06.20 at 19h 34m 45s.xml">
-      <configuration name="UserTest.testValidatePacientRegistration" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="UserTest_testValidatePacientRegistration - 2020.06.20 at 19h 40m 22s.xml">
       <configuration name="UserTest.testValidatePacientRegistration" configurationId="JUnit" />
     </history-entry>
@@ -302,12 +361,32 @@
     <history-entry file="DoctorTest_testNameValidation - 2020.06.20 at 19h 50m 38s.xml">
       <configuration name="DoctorTest.testNameValidation" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="DoctorTest_testUserValidation - 2020.06.20 at 19h 53m 11s.xml">
+      <configuration name="DoctorTest.testUserValidation" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DoctorTest_testUserValidation - 2020.06.20 at 19h 53m 37s.xml">
+      <configuration name="DoctorTest.testUserValidation" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DoctorTest_testNameValidation - 2020.06.21 at 11h 24m 28s.xml">
+      <configuration name="DoctorTest.testNameValidation" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DoctorTest_testNameValidation - 2020.06.21 at 11h 55m 32s.xml">
+      <configuration name="DoctorTest.testNameValidation" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16233766" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15884116" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -316,24 +395,24 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4985015" weight="0.32997987" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48002" visible="true" weight="0.24849094" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.47852147" weight="0.24849094" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4885115" weight="0.35714287" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.51998" side_tool="true" visible="true" weight="0.24849094" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4995005" weight="0.32997987" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48701298" weight="0.35714287" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.52147853" side_tool="true" visible="true" weight="0.24849094" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4995005" weight="0.32997987" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4755245" weight="0.32897383" />
-      <window_info anchor="right" id="Coverage" sideWeight="0.50066936" side_tool="true" visible="true" weight="0.106393605" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" sideWeight="0.49933067" visible="true" weight="0.106393605" />
+      <window_info active="true" anchor="right" id="Maven" order="4" sideWeight="0.49799198" visible="true" weight="0.106393605" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Coverage" order="8" sideWeight="0.502008" side_tool="true" visible="true" weight="0.106393605" />
     </layout>
   </component>
   <component name="WindowStateProjectService">
@@ -358,10 +437,20 @@
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Pacient.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Encryption.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2278">
-          <caret line="134" column="45" selection-start-line="134" selection-start-column="45" selection-end-line="134" selection-end-column="45" />
+        <state>
+          <caret column="27" selection-start-column="27" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/UserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -372,76 +461,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/test/java/EncryptionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="55" column="21" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+        <state relative-caret-position="255">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AlertBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Pacient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pacientdb.json">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="341" selection-start-column="341" selection-end-column="341" />
+          <caret column="336" selection-start-column="336" selection-end-column="336" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Encryption.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="27" selection-start-column="27" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/AlertBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/EncryptionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/UserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1331">
-          <caret line="446" selection-start-line="446" selection-end-line="446" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+        <state relative-caret-position="408">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Doctor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="280" column="14" selection-start-line="280" selection-start-column="14" selection-end-line="280" selection-end-column="14" />
+        <state relative-caret-position="5882">
+          <caret line="400" column="54" selection-start-line="400" selection-start-column="54" selection-end-line="400" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/DoctorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="221">
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="68" column="27" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
         </state>
       </provider>
     </entry>

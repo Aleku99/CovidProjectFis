@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: DoctorTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.218 sec <<< FAILURE!
-testNameValidation(DoctorTest)  Time elapsed: 0.206 sec  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.235 sec <<< FAILURE!
+testNameValidation(DoctorTest)  Time elapsed: 0.223 sec  <<< ERROR!
 java.lang.ExceptionInInitializerError
 	at javafx.stage.Window.<init>(Window.java:1209)
 	at javafx.stage.Stage.<init>(Stage.java:239)

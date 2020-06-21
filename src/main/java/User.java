@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -72,7 +73,7 @@ public class User {
         TextField phoneNumber = new TextField();
         TextField hospital = new TextField();
         TextField username = new TextField();
-        TextField password = new TextField();
+        PasswordField password = new PasswordField();
         fullName.setPromptText("First name and last name");
         address.setPromptText("Your address");
         phoneNumber.setPromptText("Your personal phone number");
@@ -172,7 +173,7 @@ public class User {
         TextField address = new TextField();
         TextField phoneNumber = new TextField();
         TextField username = new TextField();
-        TextField password = new TextField();
+        PasswordField password = new PasswordField();
         fullName.setPromptText("First name and last name");
         address.setPromptText("Your address");
         phoneNumber.setPromptText("Your personal phone number");
@@ -267,7 +268,7 @@ public class User {
         Label passwordLabel = new Label("Password");
         Label loginTitle = new Label("Login");
         TextField username = new TextField();
-        TextField password = new TextField();
+        PasswordField password = new PasswordField();
         Button submit = new Button();
         Button back = new Button();
         submit.setText("Log in");
